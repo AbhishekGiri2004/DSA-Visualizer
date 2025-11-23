@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kruskal's MST Visualizer</title>
+  <script src="{{ url_for('static', filename='kruskal.js') }}" defer></script>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    textarea {
+      margin: 10px;
+      padding: 10px;
+      width: 60%;
+      font-size: 16px;
+      border-radius: 8px;
+      background: #2c2c2c;
+      color: white;
+      border: 1px solid #00bcd4;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #f57c00;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 0 10px orange;
+      cursor: pointer;
+    }
+
+    .graph-container {
+      margin-top: 30px;
+      width: 800px;
+      height: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+    .node {
+      width: 50px;
+      height: 50px;
+      background: #222;
+      border: 2px solid #00bcd4;
+      color: white;
+      position: absolute;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 50px;
+      font-weight: bold;
+      box-shadow: 0 0 10px cyan;
+    }
+
+    .edge {
+      height: 2px;
+      background: white;
+      position: absolute;
+      transform-origin: left center;
+      opacity: 0.6;
+    }
+
+    .edge.orange {
+      background: orange;
+      box-shadow: 0 0 10px orange;
+      opacity: 1;
+    }
+
+    .weight-label {
+      position: absolute;
+      color: yellow;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Kruskal's Algorithm - MST Visualizer 🕸️</h1>
+
+  <textarea id="graphData" rows="10" placeholder="Example:
+5
+0: 1-2 3-6
+1: 0-2 2-3 3-8 4-5
+2: 1-3 4-7
+3: 0-6 1-8 4-9
+4: 1-5 2-7 3-9"></textarea><br>
+
+  <button onclick="runKruskal()">Visualize Kruskal's MST</button>
+
+  <div class="graph-container" id="graph3D"></div>
+
+  <script src="kruskal.js"></script>
+</body>
+</html>

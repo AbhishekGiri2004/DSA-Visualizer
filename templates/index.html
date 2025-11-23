@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visualizer Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <style>
+    body {
+      background-color: #0f1117;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 60px; /* ⬆️ Increased space below title */
+      font-size: 2.5rem;
+      color: #61dafb;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      perspective: 1000px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cube {
+      width: 250px;
+      height: 250px;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotateCube 20s infinite linear;
+      margin-bottom: 80px;  /* ⬆️ Space below cube */
+    }
+
+    .cube .face {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      background: #1e1e2f;
+      border: 3px solid #61dafb;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #61dafb;
+      box-shadow: 0 0 20px #61dafb;
+      text-align: center;
+    }
+
+    .face1 { transform: rotateY(0deg) translateZ(125px); }
+    .face2 { transform: rotateY(90deg) translateZ(125px); }
+    .face3 { transform: rotateY(180deg) translateZ(125px); }
+    .face4 { transform: rotateY(-90deg) translateZ(125px); }
+    .face5 { transform: rotateX(90deg) translateZ(125px); }
+    .face6 { transform: rotateX(-90deg) translateZ(125px); }
+
+    @keyframes rotateCube {
+      from { transform: rotateX(0deg) rotateY(0deg); }
+      to { transform: rotateX(360deg) rotateY(360deg); }
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      padding: 20px;
+      margin-top: 10px;
+      margin-bottom: 50px;  /* ⬆️ extra spacing at bottom */
+    }
+
+    .btn-group button {
+      padding: 12px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-group button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px white;
+    }
+
+    /* 🎨 Button Colors */
+    .stack { background-color: #f44336; }
+    .queue { background-color: #e91e63; }
+    .linkedlist { background-color: #9c27b0; }
+    .tree { background-color: #3f51b5; }
+    .prims { background-color: #03a9f4; }
+    .kruskal { background-color: #4caf50; }
+    .dijkstra { background-color: #ff9800; }
+  </style>
+</head>
+<body>
+  <h1>Data Structure Visualizer 💡</h1>
+
+  <div class="container">
+    <!-- 🧊 Rotating Cube -->
+    <div class="cube">
+      <div class="face face1">INTRODUCING</div>
+      <div class="face face2">DATA</div>
+      <div class="face face3">STRUCTURE</div>
+      <div class="face face4">VISUALIZER</div>
+      <div class="face face5">ANIMATED</div>
+      <div class="face face6">PROJECT</div>
+    </div>
+
+    <!-- 🔘 Buttons -->
+    <div class="btn-group">
+      <button class="stack" onclick="location.href='/stack'">Stack</button>
+      <button class="queue" onclick="location.href='/queue'">Queue</button>
+      <button class="linkedlist" onclick="location.href='/linkedlist'">Linked List</button>
+      <button class="tree" onclick="location.href='/tree'">Tree</button>
+      <button class="prims" onclick="location.href='/prims'">Prim's</button>
+      <button class="kruskal" onclick="location.href='/kruskal'">Kruskal</button>
+      <button class="dijkstra" onclick="location.href='/dijkstra'">Dijkstra</button>
+    </div>
+  </div>
+</body>
+</html>

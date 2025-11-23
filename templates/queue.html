@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vertical Queue Visualizer</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{{ url_for('static', filename='queue.js') }}" defer></script>
+  <style>
+    body {
+      background-color: #0e0e0e;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #ff9800;
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-shadow: 0 1px 2px rgba(0, 255, 255, 0.2); /* Very light glow */
+    }
+
+    .controls {
+      margin-bottom: 20px;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 8px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    button {
+      background: #fb8c00;
+      color: white;
+      box-shadow: 0 0 10px #ffa726;
+      cursor: pointer;
+    }
+
+    input {
+      background: #2c2c2c;
+      color: white;
+      border: 1px solid #ffa726;
+    }
+
+    .queue-container {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: flex-start;
+      align-items: center;
+      height: 300px;
+      width: 120px;
+      margin: 0 auto;
+      padding: 20px 10px;
+      background: radial-gradient(circle, #1c1c1c, #121212);
+      border: 6px solid #ff9800;
+      border-radius: 50px;
+      box-shadow: inset 0 0 10px #ff9800, 0 0 30px #ffa726;
+      overflow: hidden;
+    }
+
+    .queue-box {
+      width: 60px;
+      height: 60px;
+      margin: 6px 0;
+      background: linear-gradient(145deg, #ff9800, #f57c00);
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      line-height: 60px;
+      text-align: center;
+      box-shadow: 0 0 20px #ff9800;
+      transition: transform 0.4s ease;
+    }
+
+    .queue-box:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px #ffc107, 0 0 60px #ff9800;
+    }
+
+    .highlight {
+      background: linear-gradient(145deg, #ffc107, #ff9800) !important;
+      box-shadow: 0 0 30px #ffc107, 0 0 60px #ff9800 !important;
+      transform: scale(1.15) !important;
+    }
+
+    canvas {
+      margin-top: 20px;
+      max-width: 500px;
+    }
+
+    #traverseOutput {
+      margin-top: 30px;
+      padding: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffeb3b;
+    }
+
+    .output-box {
+      width: 60px;
+      height: 60px;
+      margin: 5px;
+      background: linear-gradient(145deg, #ff5722, #e64a19);
+      border-radius: 50%;
+      line-height: 60px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      animation: jump 0.5s ease;
+      box-shadow: 0 0 20px #ff5722;
+    }
+
+    @keyframes jump {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-15px) scale(1.1); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Queue Visualizer 🚦</h1>
+
+  <div class="controls">
+    <input type="text" id="value" placeholder="Enter value" />
+    <button onclick="enqueue()">Enqueue</button>
+    <button onclick="dequeue()">Dequeue</button>
+    <button onclick="traverseQueue()">Traverse</button>
+  </div>
+
+  <div class="queue-container" id="queue"></div>
+  <div id="traverseOutput"></div>
+  <canvas id="complexityChart"></canvas>
+</body>
+</html>

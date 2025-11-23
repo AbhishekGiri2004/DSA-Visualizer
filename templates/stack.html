@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stack Visualizer</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{{ url_for('static', filename='stack.js') }}" defer></script>
+  <style>
+    body {
+      background-color: #0e0e0e;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #2196f3;
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-shadow: 0 1px 2px rgba(0, 255, 255, 0.2); /* Very light glow */
+    }
+
+    .controls {
+      margin-bottom: 20px;
+    }
+
+    .stack-container-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stack-lid {
+      width: 200px;
+      height: 15px;
+      background: #4facfe;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      box-shadow: 0 0 15px #4facfe;
+      margin-bottom: -10px;
+      z-index: 10;
+      position: relative;
+    }
+
+    .stack-container {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: flex-end;
+      height: 400px;
+      margin: 0 auto;
+      width: 200px;
+      padding: 15px;
+      border: 2px solid #4facfe;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 0 25px #4facfe;
+      background: linear-gradient(to top, #121212, #1c1c1c);
+      perspective: 1000px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stack-box {
+      width: 120px;
+      height: 50px;
+      margin: 8px;
+      background: linear-gradient(145deg, #2196F3, #0d47a1);
+      border-radius: 10px;
+      line-height: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      box-shadow: 0 0 20px #2196f3, 0 0 40px #2196f3;
+      transform: rotateX(20deg) rotateY(10deg);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .stack-box:hover {
+      transform: rotateX(0deg) rotateY(0deg) scale(1.1);
+      box-shadow: 0 0 30px #03e9f4, 0 0 60px #03e9f4;
+    }
+
+    .highlight {
+      background: linear-gradient(145deg, #4facfe, #2196f3) !important;
+      box-shadow: 0 0 30px #4facfe, 0 0 60px #2196f3 !important;
+      transform: scale(1.15) rotateX(0deg) rotateY(0deg) !important;
+  }
+
+
+    .camera-box {
+      animation: camera-glow 0.5s infinite alternate;
+      border: 2px dashed #ffeb3b;
+    }
+
+    @keyframes camera-glow {
+      from {
+        box-shadow: 0 0 10px #ffee58, 0 0 20px #fdd835;
+      }
+      to {
+        box-shadow: 0 0 20px #ffee58, 0 0 40px #fdd835;
+      }
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 8px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    button {
+      background: #1e88e5;
+      color: white;
+      box-shadow: 0 0 10px #2196f3;
+      cursor: pointer;
+    }
+
+    input {
+      background: #2c2c2c;
+      color: white;
+      border: 1px solid #2196f3;
+    }
+
+    canvas {
+      margin-top: 40px;
+      max-width: 600px;
+    }
+
+    #traverseOutput {
+      margin-top: 30px;
+      padding: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffeb3b;
+    }
+
+    .output-box {
+      width: 120px;
+      height: 50px;
+      margin: 10px auto;
+      background: linear-gradient(145deg, #ff5722, #e64a19);
+      border-radius: 10px;
+      line-height: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      animation: jump 0.5s ease;
+      box-shadow: 0 0 20px #ff5722, 0 0 40px #ff5722;
+    }
+
+    @keyframes jump {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-15px) scale(1.1); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Stack Visualizer 📚</h1>
+  
+  <div class="controls">
+    <input type="text" id="value" placeholder="Enter value" />
+    <button onclick="pushStack()">Push</button>
+    <button onclick="popStack()">Pop</button>
+    <button onclick="traverseStack()">Traverse</button>
+  </div>
+
+  <div class="stack-container-wrapper">
+    <div class="stack-lid"></div>
+    <div class="stack-container" id="stack"></div>
+  </div>
+
+  <div id="traverseOutput"></div>
+
+  <canvas id="complexityChart"></canvas>
+</body>
+</html>

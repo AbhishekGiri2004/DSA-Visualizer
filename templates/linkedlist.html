@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>3D Linked List Visualizer</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{{ url_for('static', filename='linkedlist.js') }}" defer></script>
+  <style>
+    body {
+      background-color: #101820;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #00e6e6;
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-shadow: 0 1px 2px rgba(0, 255, 255, 0.2); /* Very light glow */
+    }
+
+
+
+    input, select, button {
+      padding: 10px;
+      margin: 8px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    button {
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 10px 18px;
+      margin: 6px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,255,255,0.3);
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0,255,255,0.6);
+    }
+
+/* Color themes */
+    button:nth-of-type(1),
+    button:nth-of-type(2),
+    button:nth-of-type(3) {
+      background: linear-gradient(45deg, #00e6e6, #00bcd4);
+      color: #fff;
+    }
+
+    button:nth-of-type(4),
+    button:nth-of-type(5),
+    button:nth-of-type(6) {
+      background: linear-gradient(45deg, #ff5252, #ff1744);
+      color: #fff;
+    }
+
+    button:nth-of-type(7) {
+      background: linear-gradient(45deg, #ab47bc, #7b1fa2);
+      color: #fff;
+    }
+
+
+    .list-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      perspective: 1000px;
+    }
+
+    .node {
+      width: 100px;
+      height: 60px;
+      background: linear-gradient(145deg, #00bcd4, #008c9e);
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ffff;
+      transform: rotateX(15deg) rotateY(15deg);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .node:hover {
+      transform: rotateX(0deg) rotateY(0deg) scale(1.1);
+    }
+
+    .arrow {
+      font-size: 30px;
+      color: #00ffff;
+      animation: blink 1s infinite alternate;
+    }
+
+    @keyframes blink {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+
+    canvas {
+      margin-top: 50px;
+      max-width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Linked List Visualizer ⛓️‍💥</h1>
+
+  <input type="text" id="value" placeholder="Enter value" />
+  <input type="number" id="position" placeholder="Index (optional)" />
+  <br/>
+
+  <button onclick="insertAtStart()">Insert Start</button>
+  <button onclick="insertAtEnd()">Insert End</button>
+  <button onclick="insertAtPosition()">Insert Anywhere</button>
+  <br/>
+  <button onclick="deleteFromStart()">Delete Start</button>
+  <button onclick="deleteFromEnd()">Delete End</button>
+  <button onclick="deleteAtPosition()">Delete At</button>
+  <br/>
+  <button onclick="traverse()">Traverse</button>
+
+  <div class="list-container" id="list"></div>
+  <canvas id="complexityChart"></canvas>
+</body>
+</html>

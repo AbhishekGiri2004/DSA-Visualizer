@@ -1,0 +1,114 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Flask
+instance/
+.webassets-cache
+
+# Environment variables
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# C/C++
+*.o
+*.obj
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Compiled executables (keep source, ignore compiled)
+Stack/stack_exec
+Stack/stack
+Queue/queue_exec
+Queue/queue
+LinkedList/linkedlist_exec
+LinkedList/linkedlist
+Tree/tree_exec
+Tree/tree
+Graph/Prims/prims_exec
+Graph/Prims/prims
+Graph/Kruskal/kruskal_exec
+Graph/Kruskal/kruskal
+Graph/Dijkstra/dijkstra_exec
+Graph/Dijkstra/dijkstra
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Input/Output files (optional - uncomment if you want to ignore)
+# */input.txt
+# */output.txt
+
+# Node modules (if any)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# Backup files
+*.bak
+*.backup
+*.orig

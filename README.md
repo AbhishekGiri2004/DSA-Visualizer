@@ -414,4 +414,4 @@ python app.py
 
 **© 2025 DSV - Data Structure Visualizer Platform. All Rights Reserved.**
 
-</div># DSA-Visualizer
+</div>
